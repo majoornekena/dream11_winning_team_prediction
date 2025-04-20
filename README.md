@@ -13,6 +13,8 @@ Predict the winning team of a Dream11 IPL match using machine learning with XGBo
 
 This project is a machine learning-based web app that predicts the **winning team** in an IPL Dream11 match based on match metadata like teams, venue, toss decision, target runs, and more. The model is trained using historical IPL data and is powered by **XGBoost**, with a **Flask** backend and deployed on **Render**.
 
+![Dream11 IPL Prediction Output](output.png)
+
 ---
 
 ## 🧠 ML Model
