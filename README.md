@@ -1,7 +1,7 @@
 
 # 🏏 Dream11 IPL Winning Team Predictor
 
-Predict the winning team of a Dream11 IPL match using machine learning with XGBoost, Python, Flask, and data from Kaggle (2008–2020). Deployed live using Render!
+Predict the winning team of a Dream11 IPL match using machine learning with XGBoost, Python, Flask, and data from Kaggle (2008–2024). Deployed live using Render!
 
 ## 🚀 Live Demo
 
@@ -31,7 +31,7 @@ This project is a machine learning-based web app that predicts the **winning tea
   - Home Advantage (Team 1 & Team 2)
 - **Output:** Predicted Winning Team
 
-Model is trained using IPL match data from **2008–2020**, available on [Kaggle](https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020).
+Model is trained using IPL match data from **2008–2024**, available on [Kaggle](https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020).
 
 ---
 
@@ -42,7 +42,7 @@ Model is trained using IPL match data from **2008–2020**, available on [Kaggle
 | Language        | Python                           |
 | Backend         | Flask                            |
 | Machine Learning| XGBoost                          |
-| Dataset         | IPL Kaggle Dataset (2008–2020)   |
+| Dataset         | IPL Kaggle Dataset (2008–2024)   |
 | Deployment      | Render                           |
 | Frontend        | HTML (Jinja2 Template: `index4.html`) |
 
@@ -101,7 +101,7 @@ App will run on `http://localhost:5000`
 
 ## 🤝 Credits
 
-- **Dataset:** [Kaggle IPL Dataset 2008–2020](https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020)
+- **Dataset:** [Kaggle IPL Dataset 2008–2024](https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020)
 - **Bootcamp by:** DevTown
 
 ---
