@@ -1,0 +1,210 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IPL Winner Predictor</title>
+  <style>
+    body { font-family: sans-serif; padding: 30px; text-align: center; }
+    input { padding: 10px; margin: 5px; width: 250px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+    #result { margin-top: 20px; font-size: 1.2rem; color: green; }
+  </style>
+</head>
+<body>
+
+  <h2>IPL Match Winner Predictor</h2>
+
+  <form id="predictionForm" onsubmit="makePrediction(); return false;">
+    <input type="number" id="city" placeholder="City" required><br>
+    <input type="number" id="venue" placeholder="Venue" required><br>
+    <input type="number" id="team1" placeholder="Team 1" required><br>
+    <input type="number" id="team2" placeholder="Team 2" required><br>
+    <input type="number" id="toss_winner" placeholder="Toss Winner" required><br>
+    <input type="number" id="toss_decision" placeholder="Toss Decision" required><br>
+    <input type="number" step="any" id="target_runs" placeholder="Target Runs" required><br>
+    <input type="number" step="any" id="target_overs" placeholder="Target Overs" required><br>
+    <input type="number" id="home_advantage_team1" placeholder="Home Advantage Team1" required><br>
+    <input type="number" id="home_advantage_team2" placeholder="Home Advantage Team2" required><br>
+    <button type="submit">Predict</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    async function makePrediction() {
+      const data = {
+        city: parseInt(document.getElementById("city").value),
+        venue: parseInt(document.getElementById("venue").value),
+        team1: parseInt(document.getElementById("team1").value),
+        team2: parseInt(document.getElementById("team2").value),
+        toss_winner: parseInt(document.getElementById("toss_winner").value),
+        toss_decision: parseInt(document.getElementById("toss_decision").value),
+        target_runs: parseFloat(document.getElementById("target_runs").value),
+        target_overs: parseFloat(document.getElementById("target_overs").value),
+        home_advantage_team1: parseInt(document.getElementById("home_advantage_team1").value),
+        home_advantage_team2: parseInt(document.getElementById("home_advantage_team2").value),
+      };
+
+      const res = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        document.getElementById("result").innerText = `Predicted Winner (Encoded): ${result.predicted_winner_encoded}`;
+      } else {
+        document.getElementById("result").innerText = `Error: ${result.error}`;
+      }
+    }
+  </script>
+
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IPL Winner Predictor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1c1c1c, #333);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #2c2c2c;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      font-weight: 600;
+      color: #00ffd5;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: #444;
+      color: #fff;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      background-color: #555;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      background-color: #00ffd5;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00ccaa;
+    }
+
+    #result {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      color: #0ff;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🏏 IPL Match Winner Predictor</h2>
+    <form id="predictionForm" onsubmit="makePrediction(); return false;">
+      <input type="number" id="city" placeholder="City (Encoded)" required>
+      <input type="number" id="venue" placeholder="Venue (Encoded)" required>
+      <input type="number" id="team1" placeholder="Team 1 (Encoded)" required>
+      <input type="number" id="team2" placeholder="Team 2 (Encoded)" required>
+      <input type="number" id="toss_winner" placeholder="Toss Winner (Encoded)" required>
+      <input type="number" id="toss_decision" placeholder="Toss Decision (0 = Bat, 1 = Field)" required>
+      <input type="number" step="any" id="target_runs" placeholder="Target Runs" required>
+      <input type="number" step="any" id="target_overs" placeholder="Target Overs" required>
+      <input type="number" id="home_advantage_team1" placeholder="Home Advantage Team 1 (0 or 1)" required>
+      <input type="number" id="home_advantage_team2" placeholder="Home Advantage Team 2 (0 or 1)" required>
+      <button type="submit">Predict Winner</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    async function makePrediction() {
+      const data = {
+        city: parseInt(document.getElementById("city").value),
+        venue: parseInt(document.getElementById("venue").value),
+        team1: parseInt(document.getElementById("team1").value),
+        team2: parseInt(document.getElementById("team2").value),
+        toss_winner: parseInt(document.getElementById("toss_winner").value),
+        toss_decision: parseInt(document.getElementById("toss_decision").value),
+        target_runs: parseFloat(document.getElementById("target_runs").value),
+        target_overs: parseFloat(document.getElementById("target_overs").value),
+        home_advantage_team1: parseInt(document.getElementById("home_advantage_team1").value),
+        home_advantage_team2: parseInt(document.getElementById("home_advantage_team2").value)
+      };
+
+      const res = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        document.getElementById("result").innerText = `🏆 Predicted Winner (Encoded): ${result.predicted_winner_encoded}`;
+      } else {
+        document.getElementById("result").innerText = `❌ Error: ${result.error}`;
+      }
+    }
+  </script>
+
+</body>
+</html>

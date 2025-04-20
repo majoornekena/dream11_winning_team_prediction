@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IPL Winner Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #007bff;
+    }
+    .btn-primary {
+      width: 100%;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>IPL Winner Predictor</h1>
+    <form id="predictForm">
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <select class="form-select" id="city">
+          {% for name, value in cities.items() %}
+          <option value="{{ value }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="venue" class="form-label">Venue</label>
+        <select class="form-select" id="venue">
+          {% for name, value in venues.items() %}
+          <option value="{{ value }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="team1" class="form-label">Team 1</label>
+        <select class="form-select" id="team1">
+          {% for name, value in teams.items() %}
+          <option value="{{ value }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="team2" class="form-label">Team 2</label>
+        <select class="form-select" id="team2">
+          {% for name, value in teams.items() %}
+          <option value="{{ value }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="toss_winner" class="form-label">Toss Winner</label>
+        <select class="form-select" id="toss_winner">
+          {% for name, value in teams.items() %}
+          <option value="{{ value }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="toss_decision" class="form-label">Toss Decision</label>
+        <select class="form-select" id="toss_decision">
+          <option value="0">Bat</option>
+          <option value="1">Field</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="target_runs" class="form-label">Target Runs</label>
+        <input type="number" class="form-control" id="target_runs" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="target_overs" class="form-label">Target Overs</label>
+        <input type="number" class="form-control" step="0.1" id="target_overs" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="home_advantage_team1" class="form-label">Home Advantage Team 1</label>
+        <select class="form-select" id="home_advantage_team1">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="home_advantage_team2" class="form-label">Home Advantage Team 2</label>
+        <select class="form-select" id="home_advantage_team2">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Predict Winner</button>
+    </form>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById("predictForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = {
+        city: document.getElementById("city").value,
+        venue: document.getElementById("venue").value,
+        team1: document.getElementById("team1").value,
+        team2: document.getElementById("team2").value,
+        toss_winner: document.getElementById("toss_winner").value,
+        toss_decision: document.getElementById("toss_decision").value,
+        target_runs: document.getElementById("target_runs").value,
+        target_overs: document.getElementById("target_overs").value,
+        home_advantage_team1: document.getElementById("home_advantage_team1").value,
+        home_advantage_team2: document.getElementById("home_advantage_team2").value
+      };
+
+      fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(response => {
+        document.getElementById("result").innerText = "Predicted Winner: " + response.predicted_team;
+      })
+      .catch(err => console.error("Error:", err));
+    });
+  </script>
+</body>
+</html>
